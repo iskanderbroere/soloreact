@@ -42,7 +42,6 @@ export const updateStudentById = (id, update) => {
   return dispatch => {
     const path = 'classes/:batchNumber/students/' + id
     dispatch(loading(path, true))
-    console.log('UPDATE', update)
     api.put(path, { id, update })
       .then((res) => {
         dispatch({ type: UPDATED_STUDENT, payload: res.body })
