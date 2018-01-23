@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import NewStudent from '../students/NewStudent'
 import { fetchClassByBatchNumber } from '../actions/classes'
 import './ClassPage.css'
@@ -23,8 +24,8 @@ export class ClassPage extends PureComponent {
       <div className="classPage">
         <h1>Batch # {batchNumber}</h1>
         <ul>
-          <li><NewStudent batchNumber={this.props.match.params.batchNumber} /></li>
-          {studentIds.map((student, i) => <li key={i}>{student.fullName} - {student._id}</li>)}
+          <li><NewStudent batchNumber={batchNumber} /></li>
+          {studentIds.map((student, i) => <li key={i}><Link to={'/classes/' + batchNumber + '/students/' + student._id}>{student.fullName} - {student._id}</Link></li>)}
         </ul>
       </div>
     )
