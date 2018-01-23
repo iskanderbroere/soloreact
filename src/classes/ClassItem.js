@@ -7,9 +7,9 @@ import './ClassItem.css'
 
 export const classShape = PropTypes.shape({
   _id: PropTypes.string.isRequired,
-  batchNumber: PropTypes.string.isRequired,
-  startDate: PropTypes.instanceOf(Date).isRequired,
-  endDate: PropTypes.instanceOf(Date).isRequired
+  batchNumber: PropTypes.number.isRequired,
+  startDate: PropTypes.string.isRequired,
+  endDate: PropTypes.string.isRequired
 })
 
 class ClassItem extends PureComponent {
@@ -18,15 +18,15 @@ class ClassItem extends PureComponent {
   }
 
   render() {
-    const { _id, startDate, endDate, batchNumber } = this.props
+    const { startDate, endDate, batchNumber } = this.props
 
     return(
-      <Link to={`/classes/${_id}`}>
+      <Link to={`/classes/${batchNumber}`}>
         <article className="ClassItem">
           <header>
             <h1>{batchNumber}</h1>
           </header>
-            <p>{ format(startDate, 'D MMMM YYYY') } - { format(endDate, 'D MMMM YYYY') }</p>
+            <p>{ format(startDate, 'D MMMM YYYY') } - { format(endDate, 'D MMMM YYYY') }{startDate}{endDate}</p>
         </article>
       </Link>
     )
