@@ -26,7 +26,7 @@ class ClassItem extends PureComponent {
           <header>
             <h1>{batchNumber}</h1>
           </header>
-            <p>{ format(startDate, 'D MMMM YYYY') } - { format(endDate, 'D MMMM YYYY') }{startDate}{endDate}</p>
+            <p>{ format(startDate, 'D MMMM YYYY') } - { format(endDate, 'D MMMM YYYY') }</p>
         </article>
       </Link>
     )

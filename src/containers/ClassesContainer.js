@@ -21,13 +21,11 @@ class ClassesContainer extends PureComponent {
   }
 
   render() {
-    return (
-      <div>
-      <NewClass />
+    return (   
       <main className="ClassContainer">
         {this.props.classes.map((this.renderClass))}
+        <NewClass />
       </main>
-      </div>
     )
   }
 }

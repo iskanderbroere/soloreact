@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { createClass } from '../actions/classes'
+import { format } from 'date-fns'
+import './NewClass.css'
 
 class NewClass extends PureComponent {
   constructor(props) {
@@ -15,31 +17,19 @@ class NewClass extends PureComponent {
     }
   }
 
-  updateBatchnumber(event) {
-    this.setState({
-      batchNumber: this.refs.batchNumber.value
-    })
-    console.log(this.state.batchNumber)
-  }
+  updateBatchnumber(event) { this.setState({ batchNumber: this.refs.batchNumber.value }) }
 
-  saveClass() {
-    //console.table(this.state)
+  updateStartDate(event) { this.setState({ startDate: this.refs.startDate.value }) }
 
-    const newClass = {
-      ...this.state,
-      startDate: '2017-08-22T22:00:00.000Z',
-      endDate: '2018-07-03T22:00:00.000Z'
-    }
+  updateEndDate(event) { this.setState({ endDate: this.refs.endDate.value }) }
 
-    //console.table(newClass)
-
-    this.props.save(newClass)
-  }
+  saveClass() { this.props.save(this.state) }
 
   render() {
     return (
-      <div className="editor">
-        <input
+      <div className="newClass">
+        <h1>Create class</h1>
+        <input required
           type="text"
           ref="batchNumber"
           className="batchNumber"
@@ -47,10 +37,21 @@ class NewClass extends PureComponent {
           defaultValue={this.state.batchNumber}
           onChange={this.updateBatchnumber.bind(this)}
           onKeyUp={this.updateBatchnumber.bind(this)} />
-
-        <div className="actions">
-          <button className="primary" onClick={this.saveClass.bind(this)}>Save</button>
-        </div>
+        <input required
+          id="startDate"
+          ref="startDate"
+          type="date"
+          defaultValue={this.state.startDate}
+          onChange={this.updateStartDate.bind(this)}
+          onKeyUp={this.updateStartDate.bind(this)} />
+        <input required
+          id="endDate"
+          ref="endDate"
+          type="date"
+          defaultValue={this.state.endDate}
+          onChange={this.updateEndDate.bind(this)}
+          onKeyUp={this.updateEndDate.bind(this)} />
+        <button className="primary" onClick={this.saveClass.bind(this)}>Create class</button>
       </div>
     )
   }

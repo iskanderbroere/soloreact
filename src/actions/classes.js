@@ -25,7 +25,7 @@ export const createClass = (newClass) => {
     const path = 'classes'
     dispatch(loading(path, true))
     api.post(path, newClass)
-      .then(res => console.log(res)) //dispatch({ type: FETCHED_CLASSES, payload: res.body }))
+      .then(res => dispatch({ type: CREATED_CLASS, payload: res.body }))
       .catch(err => dispatch(loadError(err)))
 
     dispatch(loading(path, false))
