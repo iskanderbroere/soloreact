@@ -1,4 +1,4 @@
-import { CREATED_STUDENT, FETCHED_ONE_STUDENT, UPDATED_STUDENT } from  '../actions/students'
+import { CREATED_STUDENT, FETCHED_ONE_STUDENT, UPDATED_STUDENT, DELETED_STUDENT } from  '../actions/students'
 
 export default (state = [], { type, payload } = {}) => {
   switch (type) {
@@ -20,6 +20,15 @@ export default (state = [], { type, payload } = {}) => {
         return s
       })
       return newState
+    
+    case DELETED_STUDENT :
+      const deletedState = state.map(s => {
+        if (s._id.toString() === payload._id) {
+          return null
+        }
+        return s
+      })
+      return deletedState
 
     default :
       return state

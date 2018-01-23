@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { fetchStudentById, updateStudentById } from '../actions/students'
+import { fetchStudentById, updateStudentById, deleteStudentById } from '../actions/students'
 import './StudentPage.css'
 
 export class StudentPage extends PureComponent {
@@ -33,6 +33,8 @@ export class StudentPage extends PureComponent {
 
   updateStudent() { this.props.save(this.props.match.params.id, this.state) }
 
+  deleteStudent() { this.props.delete(this.props.match.params.id, this.props.match.params.batchNumber) }
+
   render() {
     const { _id, fullName } = this.props
 
@@ -59,7 +61,8 @@ export class StudentPage extends PureComponent {
           onChange={this.updatePicUrl.bind(this)}
           onKeyUp={this.updatePicUrl.bind(this)} />
 
-        <button className="primary" onClick={this.updateStudent.bind(this)}>Create class</button>
+        <button className="primary" onClick={this.updateStudent.bind(this)}>Update student</button>
+        <button className="primary" onClick={this.deleteStudent.bind(this)}>Delete student</button>
       </div>
     )
   }
@@ -78,4 +81,4 @@ const mapStateToProps = ({ students }, { match }) => {
   }
 }
 
-export default connect(mapStateToProps, { fetchStudentById, save: updateStudentById })(StudentPage)
+export default connect(mapStateToProps, { fetchStudentById, save: updateStudentById, delete: deleteStudentById })(StudentPage)

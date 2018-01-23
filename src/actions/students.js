@@ -1,10 +1,12 @@
 import ApiClient from '../api/client'
+import { push } from 'react-router-redux'
 import { loading, loadError } from './loading'
 
 export const CREATED_STUDENT = 'CREATED_STUDENT'
 export const UPDATED_STUDENT = 'UPDATED_STUDENT'
 export const UPDATED_CLASS = 'UPDATED_CLASS'
 export const FETCHED_ONE_STUDENT = 'FETCHED_ONE_STUDENT'
+export const DELETED_STUDENT = 'DELETED_STUDENT'
 
 const api = new ApiClient()
 
@@ -52,14 +54,16 @@ export const updateStudentById = (id, update) => {
   }
 }
 
-export const deleteStudentById = (id) => {
+export const deleteStudentById = (id, bn) => {
   return dispatch => {
     const path = 'classes/:batchNumber/students/' + id
     dispatch(loading(path, true))
-
-    api.get(path)
+    console.log(id, path)
+    api.delete(path)
       .then((res) => {
-        dispatch({ type: FETCHED_ONE_STUDENT, payload: res.body })
+        console.log(bn)
+        dispatch(push('/classes/' + bn))
+        dispatch({ type: DELETED_STUDENT, payload: res.body })
       })
       .catch(err => dispatch(loadError(err)))
 
