@@ -70,6 +70,7 @@ export class StudentPage extends PureComponent {
 
 const mapStateToProps = ({ students }, { match }) => {
   const student = students.reduce((prev, next) => {
+    // this may be buggy
     if (!next) return students[0]
     if (next._id.toString() === match.params.id) {
       return next
