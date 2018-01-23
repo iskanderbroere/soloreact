@@ -1,5 +1,5 @@
 import classes from './classes'
-// import students from './students'
+import students from './students'
 // import evaluations from './evaluations'
 import loading from './loading'
 import loadErrors from './loadErrors'
@@ -9,5 +9,6 @@ export default {
   loading,
   loadErrors,
   classes,
+  students,
   user
 }

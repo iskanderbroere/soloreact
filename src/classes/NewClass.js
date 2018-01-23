@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { createClass } from '../actions/classes'
-import { format } from 'date-fns'
 import './NewClass.css'
 
 class NewClass extends PureComponent {

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { fetchClassByBatchNumber } from '../actions/classes'
 import './ClassPage.css'
 
-export class RecipePage extends PureComponent {
+export class ClassPage extends PureComponent {
   static propTypes = {
     batchNumber: PropTypes.number,
   }
@@ -23,7 +23,7 @@ export class RecipePage extends PureComponent {
       <div className="classPage">
         <h1>Batch # {batchNumber}</h1>
         <ul>
-          {this.props.studentIds.map(student => <li key={student}>{student}</li>)}
+          {this.props.studentIds.map(student => <li key={student._id}>{student._id}</li>)}
         </ul>
       </div>
     )
@@ -43,4 +43,4 @@ const mapStateToProps = ({ classes }, { match }) => {
   }
 }
 
-export default connect(mapStateToProps, { fetchClassByBatchNumber })(RecipePage)
+export default connect(mapStateToProps, { fetchClassByBatchNumber })(ClassPage)

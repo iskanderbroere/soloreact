@@ -11,12 +11,6 @@ export default (state = [], { type, payload } = {}) => {
     case CREATED_CLASS :
       return [payload].concat(state)
 
-    case 'TOGGLE_LIKE_CLASS' :
-      return state.map((classObject) => {
-        if (classObject._id !== payload) return classObject
-        return { ...classObject, liked: !classObject.liked }
-      })
-
     default :
       return state
   }
