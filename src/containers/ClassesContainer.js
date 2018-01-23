@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import ClassItem, { classShape } from '../classes/ClassItem'
+import NewClass from '../classes/NewClass'
 import { fetchClasses } from '../actions/classes'
 import './ClassesContainer.css'
 
@@ -21,9 +22,12 @@ class ClassesContainer extends PureComponent {
 
   render() {
     return (
+      <div>
+      <NewClass />
       <main className="ClassContainer">
         {this.props.classes.map((this.renderClass))}
       </main>
+      </div>
     )
   }
 }
