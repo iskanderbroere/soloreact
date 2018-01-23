@@ -24,7 +24,7 @@ class NewStudent extends PureComponent {
   render() {
     return (
       <div className="newStudent">
-        <h1>Create class</h1>
+        <h1>Add student</h1>
         <input required
           type="text"
           ref="fullName"

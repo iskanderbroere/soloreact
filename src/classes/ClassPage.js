@@ -24,7 +24,7 @@ export class ClassPage extends PureComponent {
         <h1>Batch # {batchNumber}</h1>
         <ul>
           <li><NewStudent batchNumber={this.props.match.params.batchNumber} /></li>
-          {studentIds.map((student, i) => <li key={i}>{student.fullName}</li>)}
+          {studentIds.map((student, i) => <li key={i}>{student.fullName} - {student._id}</li>)}
         </ul>
       </div>
     )
