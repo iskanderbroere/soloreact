@@ -1,12 +1,9 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { format } from 'date-fns'
 // import ClassCategory from './ClassCategory'
 import './ClassItem.css'
-
-const PLACEHOLDER = 'http://via.placeholder.com/500x180?text=No%20Image'
 
 export const classShape = PropTypes.shape({
   _id: PropTypes.string.isRequired,

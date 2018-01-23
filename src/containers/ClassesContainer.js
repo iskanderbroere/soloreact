@@ -1,14 +1,14 @@
 import React, { PureComponent } from 'react'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import ClassItem, { classShape } from '../classes/ClassItem'
 import { fetchClasses } from '../actions/classes'
 import './ClassesContainer.css'
 
 class ClassesContainer extends PureComponent {
-  // static propTypes = {
-  //   classes: PropTypes.arrayOf(classShape).isRequired,
-  // }
+  static propTypes = {
+    classes: PropTypes.arrayOf(classShape).isRequired,
+  }
 
   componentWillMount() {
     //this.props.dispatch(fetchClasses())
