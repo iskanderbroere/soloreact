@@ -42,7 +42,7 @@ class NewStudent extends PureComponent {
           onChange={this.updatePicUrl.bind(this)}
           onKeyUp={this.updatePicUrl.bind(this)} />
 
-        <button className="primary" onClick={this.saveStudent.bind(this)}>Create class</button>
+        <button className="primary" onClick={this.saveStudent.bind(this)}>Create student</button>
       </div>
     )
   }

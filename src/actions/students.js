@@ -2,6 +2,7 @@ import ApiClient from '../api/client'
 import { loading, loadError } from './loading'
 
 export const CREATED_STUDENT = 'CREATED_STUDENT'
+export const UPDATED_STUDENT = 'UPDATED_STUDENT'
 export const UPDATED_CLASS = 'UPDATED_CLASS'
 export const FETCHED_ONE_STUDENT = 'FETCHED_ONE_STUDENT'
 
@@ -13,7 +14,6 @@ export const createStudent = (newStudent, batchNumber) => {
     dispatch(loading(path, true))
     api.post(path, newStudent)
       .then(res => {
-        // console.log('res', {...res, batchNumber: batchNumber})
         dispatch({ type: UPDATED_CLASS, payload: { ...res, batchNumber } })
         dispatch({ type: CREATED_STUDENT, payload: res.body })
       })
@@ -23,9 +23,39 @@ export const createStudent = (newStudent, batchNumber) => {
   }
 }
 
-export const fetchStudentById = (bn, id) => {
+export const fetchStudentById = (id) => {
   return dispatch => {
-    const path = 'classes/' + bn + '/students/' + id
+    const path = 'classes/:batchNumber/students/' + id
+    dispatch(loading(path, true))
+
+    api.get(path)
+      .then((res) => {
+        dispatch({ type: FETCHED_ONE_STUDENT, payload: res.body })
+      })
+      .catch(err => dispatch(loadError(err)))
+
+    dispatch(loading(path, false))
+  }
+}
+
+export const updateStudentById = (id, update) => {
+  return dispatch => {
+    const path = 'classes/:batchNumber/students/' + id
+    dispatch(loading(path, true))
+    console.log('UPDATE', update)
+    api.put(path, { id, update })
+      .then((res) => {
+        dispatch({ type: UPDATED_STUDENT, payload: res.body })
+      })
+      .catch(err => dispatch(loadError(err)))
+
+    dispatch(loading(path, false))
+  }
+}
+
+export const deleteStudentById = (id) => {
+  return dispatch => {
+    const path = 'classes/:batchNumber/students/' + id
     dispatch(loading(path, true))
 
     api.get(path)
