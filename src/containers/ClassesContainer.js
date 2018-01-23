@@ -17,14 +17,14 @@ class ClassesContainer extends PureComponent {
   }
 
   renderClass = (c, i) => {
-    return <ClassItem className="ClassItem" key={i} { ...c } />
+    return <ClassItem className="ClassItem" key={c._id} { ...c } />
   }
 
   render() {
     return (   
       <main className="ClassContainer">
-        {this.props.classes.map((this.renderClass))}
         <NewClass />
+        {this.props.classes.map((this.renderClass))}
       </main>
     )
   }

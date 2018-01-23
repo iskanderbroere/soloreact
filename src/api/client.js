@@ -17,7 +17,6 @@ export default class ApiClient {
   }
 
   post(path, data = {}) {
-    console.log(data)
     return request
       .post(this.createUrl(path))
       .set(this.headers())

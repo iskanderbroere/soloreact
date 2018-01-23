@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import NewStudent from '../students/NewStudent'
 import { fetchClassByBatchNumber } from '../actions/classes'
 import './ClassPage.css'
 
@@ -14,8 +15,7 @@ export class ClassPage extends PureComponent {
   }
 
   render() {
-    // console.log(this.props)
-    const { _id, batchNumber } = this.props
+    const { _id, batchNumber, studentIds } = this.props
 
     if (!_id) return null
 
@@ -23,7 +23,8 @@ export class ClassPage extends PureComponent {
       <div className="classPage">
         <h1>Batch # {batchNumber}</h1>
         <ul>
-          {this.props.studentIds.map(student => <li key={student._id}>{student._id}</li>)}
+          <li><NewStudent batchNumber={this.props.match.params.batchNumber} /></li>
+          {studentIds.map((student, i) => <li key={i}>{student.fullName}</li>)}
         </ul>
       </div>
     )
