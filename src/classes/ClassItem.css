@@ -1,0 +1,9 @@
+.ClassItem {
+  text-align: center;
+  padding: 10px;
+  border: 2px dashed black;
+}
+a {
+  text-decoration: none;
+  color: #222;
+}
