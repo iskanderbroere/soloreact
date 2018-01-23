@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "date-fns": "^1.29.0",
     "history": "^4.7.2",
     "material-design-icons": "^3.0.1",
     "material-ui": "^1.0.0-beta.28",
@@ -28,6 +29,7 @@
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "jest-enzyme": "^4.0.2",
+    "prop-types": "^15.6.0",
     "react-test-renderer": "^16.2.0",
     "sinon": "^4.1.4"
   }
