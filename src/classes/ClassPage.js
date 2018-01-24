@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import differenceInDays from 'date-fns/difference_in_days'
 import NewStudent from '../students/NewStudent'
 import { fetchClassByBatchNumber } from '../actions/classes'
 import { askQuestion } from '../actions/students'
@@ -10,8 +11,6 @@ import './ClassPage.css'
 export class ClassPage extends PureComponent {
   constructor(props) {
     super()
-
-    const { modal } = props
 
     this.state = {
       modal: false
@@ -37,7 +36,7 @@ export class ClassPage extends PureComponent {
   renderStudent(student, i, batchNumber) {
     const bgcolor = (e) => { 
       if (e === 0) { 
-        return 'tomato' 
+        return '#e9ecef' 
       } else if (e === 1) {
         return 'red'
       } else if (e === 2) {
@@ -68,9 +67,14 @@ export class ClassPage extends PureComponent {
   }
 
   render() {
-    console.log(this.props)
-    const { _id, batchNumber, studentIds } = this.props
-    
+    const { studentIds } = this.props
+
+    const greenStudents = (studs) => ((studs.filter(s => s.lastEvaluation === 1)).length / studs.length) * 100
+    const orangeStudents = (studs) => ((studs.filter(s => s.lastEvaluation === 2)).length / studs.length) * 100
+    const redStudents = (studs) => ((studs.filter(s => s.lastEvaluation === 3)).length / studs.length) * 100
+    const grayStudents = (studs) => ((studs.filter(s => s.lastEvaluation === 0)).length / studs.length) * 100
+
+    const { _id, batchNumber, startDate, endDate } = this.props
     if (!_id) return null
 
     return (
@@ -87,12 +91,20 @@ export class ClassPage extends PureComponent {
           </div>
         </div>
         <div className="classPage container is-fluid">
-          <h2 style={{ marginBottom: '20px' }}>Batch # {batchNumber}</h2>
-          <button className="button is-primary is-outlined is-large"
-            style={{ marginBottom: '20px' }}
-            onClick={this.askQuestion.bind(this)}>
-            Ask a question!
-          </button>
+          <header>
+            <h2 style={{ marginBottom: '20px' }}>Batch # {batchNumber}</h2>
+            <h3 style={{ marginBottom: '20px' }}>{differenceInDays(endDate, startDate)}</h3>
+            <button className="button is-primary is-outlined is-large"
+              style={{ marginBottom: '20px' }}
+              onClick={this.askQuestion.bind(this)}>
+              Ask a question!
+            </button>
+            <div className="progress" style={{ marginBottom: '20px' }}>
+              <div className="progress-bar" role="progressbar" style={{ width: `${greenStudents(studentIds)}%`, backgroundColor: '#23d160' }} aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+              <div className="progress-bar is-warning" role="progressbar" style={{width: `${orangeStudents(studentIds)}%`, backgroundColor: '#ffdd57'}} aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+              <div className="progress-bar is-danger" role="progressbar" style={{width: `${redStudents(studentIds)}%`, backgroundColor: '#ff3860'}} aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </header>
           <ul className="studentList">
             <NewStudent batchNumber={batchNumber} />
             {studentIds.map((student, i) => this.renderStudent(student, i, batchNumber))}

@@ -2,6 +2,9 @@
   list-style: none;
   margin: 0;
 }
+.classPage header {
+  text-align: center;
+}
 .studentList {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -24,4 +27,20 @@
   height: 50px;
   border-radius: 50%;
   margin-left: auto;
+}
+.progress {
+  display: flex;
+  height: 1rem;
+  overflow: hidden;
+  font-size: .75rem;
+  background-color: #e9ecef;
+  border-radius: .25rem;
+}
+.progress-bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  transition: width .6s ease;
 }

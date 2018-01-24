@@ -7,11 +7,11 @@ class NewStudent extends PureComponent {
   constructor(props) {
     super()
 
-    const { fullName, picUrl } = props
+    const { fullName } = props
 
     this.state = {
       fullName,
-      picUrl
+      picUrl: 'https://api.adorable.io/avatars/200/'
     }
   }
 
