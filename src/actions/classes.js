@@ -1,4 +1,5 @@
 import ApiClient from '../api/client'
+import { push } from 'react-router-redux'
 import { loading, loadError } from './loading'
 
 export const FETCHED_CLASSES = 'FETCHED_CLASSES'
@@ -13,8 +14,14 @@ export const fetchClasses = () => {
     dispatch(loading(path, true))
 
     api.get(path)
-      .then(res => dispatch({ type: FETCHED_CLASSES, payload: res.body }))
-      .catch(err => dispatch(loadError(err)))
+      .then(res => {
+        console.log(res)
+        dispatch({ type: FETCHED_CLASSES, payload: res.body })
+      })
+      .catch(err => {
+        dispatch(push('/'))
+        dispatch(loadError(err))
+      })
 
     dispatch(loading(path, false))
   }

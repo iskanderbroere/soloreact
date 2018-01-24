@@ -17,7 +17,7 @@ export default function signIn (user) {
       api.get('users/me', res)
       .then(res => {
         dispatch({ type: USER_SIGNED_IN, payload: res.body })
-        dispatch(push('/'))
+        dispatch(push('/classes'))
       })
     })
     .catch(err => dispatch(loadError(err)))

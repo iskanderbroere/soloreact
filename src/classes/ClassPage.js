@@ -17,15 +17,24 @@ export class ClassPage extends PureComponent {
 
   render() {
     const { _id, batchNumber, studentIds } = this.props
-
+    const bgcolor = (e) => { 
+      if (e === 0) { 
+        return 'red' 
+      } else if (e === 1) {
+        return 'red'
+      } else if (e === 2) {
+        return 'orange'
+      } 
+      return 'limegreen'
+    }
     if (!_id) return null
 
     return (
       <div className="classPage">
         <h1>Batch # {batchNumber}</h1>
-        <ul>
-          <li><NewStudent batchNumber={batchNumber} /></li>
-          {studentIds.map((student, i) => <li key={i}><Link to={'/classes/' + batchNumber + '/students/' + student._id}>{student.fullName} - {student._id}</Link></li>)}
+        <NewStudent batchNumber={batchNumber} />
+        <ul className="studentList">
+          {studentIds.map((student, i) => <li style={{ backgroundColor: bgcolor(student.lastEvaluation) }} className="studentItem" key={i}><Link to={'/classes/' + batchNumber + '/students/' + student._id}>{student.fullName} - {student._id} - {student.lastEvaluation}</Link></li>)}
         </ul>
       </div>
     )
