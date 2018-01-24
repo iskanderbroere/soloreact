@@ -22,12 +22,12 @@ class ClassItem extends PureComponent {
 
     return(
       <Link to={`/classes/${batchNumber}`}>
-        <article class="card ClassItem">
-          <div class="card-content">
-            <h2 class="title">
+        <article className="card ClassItem">
+          <div className="card-content">
+            <h2 className="title">
             Batch # {batchNumber}
             </h2>
-            <div class="content">
+            <div className="content">
               <time>{ format(startDate, 'D MMMM YYYY') } - { format(endDate, 'D MMMM YYYY') }</time>
             </div>
           </div>

@@ -19,9 +19,10 @@ export default (state = [], { type, payload } = {}) => {
     case CREATED_CLASS :
       return [payload].concat(state)
     
-    case UPDATED_CLASS :
+    case UPDATED_CLASS :   
       const newState = state.map(c => {
-        if (c.batchNumber.toString() === payload.batchNumber) {
+        if (c.batchNumber.toString() === payload.batchNumber.toString()) {
+          console.log('hi')
           const newClass = {
             ...c,
             studentIds: c.studentIds.concat([payload.body])

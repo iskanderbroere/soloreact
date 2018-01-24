@@ -9,17 +9,17 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <nav class="navbar" role="navigation" aria-label="main navigation">
+      <nav className="navbar" aria-label="main navigation">
         <div className="container is-fluid">
-          <div class="navbar-brand">
+          <div className="navbar-brand">
             <Link className="navbar-item" to="/classes">
               <h1>Welcome to Classes</h1>
             </Link>
           </div>
-          <div class="navbar-end">
-            <div style={{ paddingRight: 0 }} class="navbar-item">
-              <p class="control">
-                <Link class="button is-primary" to="/sign-in">
+          <div className="navbar-end">
+            <div style={{ paddingRight: 0 }} className="navbar-item">
+              <p className="control">
+                <Link className="button is-primary" to="/sign-in">
                   Sign in
                 </Link>
               </p>

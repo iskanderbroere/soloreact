@@ -28,30 +28,29 @@ export class ClassPage extends PureComponent {
     }
 
     return (
-      <li 
-        key={i}>
-        <article className="card">
-          <div class="card-content">
-            <div class="media">
-              <div class="media-left">
-                <figure class="image is-50x50">
-                  <div className="studentColor" style={{ backgroundColor: bgcolor(student.lastEvaluation) }}></div>
-                </figure>
-              </div>
-              <div class="media-content">
-                <h2 class="is-4" style={{ color: '#363636', 'font-size': '2rem' }}>
-                  <Link to={'/classes/' + batchNumber + '/students/' + student._id}>
+      <Link key={i} to={'/classes/' + batchNumber + '/students/' + student._id}>
+        <li>
+          <article className="card">
+            <div className="card-content">
+              <div className="media">
+                <div className="media-left">
+                  <figure className="image is-50x50">
+                    <div className="studentColor" style={{ backgroundColor: bgcolor(student.lastEvaluation) }}></div>
+                  </figure>
+                </div>
+                <div className="media-content">
+                  <h2 className="is-4" style={{ color: '#363636', fontSize: '2rem' }}>
                     {student.fullName}
-                  </Link>
-                </h2>
+                  </h2>
+                </div>
+              </div>
+              <div className="content">
+                <img alt="student" style={{ borderRadius: '50%', marginTop: '10px', maxWidth: '200px' }} src={ student.picUrl ? student.picUrl : 'https://api.adorable.io/avatars/200/'} />
               </div>
             </div>
-            <div class="content">
-              <img style={{ borderRadius: '50%', marginTop: '10px', maxWidth: '200px' }} src={ student.picUrl ? student.picUrl : 'https://api.adorable.io/avatars/200/'} />
-            </div>
-          </div>
-        </article>
-      </li>
+          </article>
+        </li>
+      </Link>
     )
   }
 

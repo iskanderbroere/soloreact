@@ -27,8 +27,8 @@ class NewClass extends PureComponent {
   render() {
     return (
       <div className="card newClass">
-        <div class="card-content">
-        {/* <div class="content"> */}
+        <div className="card-content">
+        {/* <div className="content"> */}
         {/* <h1>Create class</h1> */}
         <div className="field">
         <div className="control">

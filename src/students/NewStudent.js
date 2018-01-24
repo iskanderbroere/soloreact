@@ -24,7 +24,7 @@ class NewStudent extends PureComponent {
   render() {
     return (
       <div className="card newStudent">
-        <div class="card-content">
+        <div className="card-content">
           <div className="field">
             <div className="control">
               <input required

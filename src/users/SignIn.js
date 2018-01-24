@@ -22,21 +22,21 @@ export class SignIn extends PureComponent {
       <div className="container is-fluid">
         <form onSubmit={this.submitForm.bind(this)}>
           <div className="field">
-            <label class="label">Email</label>
-            <div class="control">
-              <input class="input"
+            <label className="label">Email</label>
+            <div className="control">
+              <input className="input"
                 autoFocus ref="email"
                 type="email"
                 placeholder="jamie@gulliver.dev" />
             </div>
           </div>
-          <div class="field">
-            <label class="label">Password</label>
-            <div class="control">
-              <input class="input" ref="password" type="password" />
+          <div className="field">
+            <label className="label">Password</label>
+            <div className="control">
+              <input className="input" ref="password" type="password" />
             </div>
           </div>
-          <div class="control">
+          <div className="control">
             <input className="button is-link" type="submit" value="Sign in" />
           </div>
         </form>

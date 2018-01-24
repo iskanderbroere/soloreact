@@ -14,7 +14,6 @@ export default (state = [], { type, payload } = {}) => {
     case UPDATED_STUDENT :
       const newState = state.map(s => {
         if (s._id.toString() === payload._id) {
-          // console.log({ ...s, ...payload })
           return { ...s, ...payload }
         }
         return s

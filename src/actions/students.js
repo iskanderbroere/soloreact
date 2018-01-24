@@ -58,10 +58,8 @@ export const deleteStudentById = (id, bn) => {
   return dispatch => {
     const path = 'classes/:batchNumber/students/' + id
     dispatch(loading(path, true))
-    console.log(id, path)
     api.delete(path)
       .then((res) => {
-        console.log(bn)
         dispatch(push('/classes/' + bn))
         dispatch({ type: DELETED_STUDENT, payload: res.body })
       })

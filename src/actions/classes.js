@@ -15,7 +15,6 @@ export const fetchClasses = () => {
 
     api.get(path)
       .then(res => {
-        console.log(res)
         dispatch({ type: FETCHED_CLASSES, payload: res.body })
       })
       .catch(err => {
