@@ -62,7 +62,7 @@ export class StudentPage extends PureComponent {
           onKeyUp={this.updatePicUrl.bind(this)} />
 
         <button className="primary" onClick={this.updateStudent.bind(this)}>Update student</button>
-        <button className="primary" onClick={this.deleteStudent.bind(this)}>Delete student</button>
+        <button className="deleteButton" onClick={this.deleteStudent.bind(this)}>&times;</button>
       </div>
     )
   }

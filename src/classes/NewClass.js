@@ -26,31 +26,52 @@ class NewClass extends PureComponent {
 
   render() {
     return (
-      <div className="newClass">
-        <h1>Create class</h1>
+      <div className="card newClass">
+        <div class="card-content">
+        {/* <div class="content"> */}
+        {/* <h1>Create class</h1> */}
+        <div className="field">
+        <div className="control">
         <input required
-          type="text"
+          className="input"
+          type="number"
           ref="batchNumber"
-          className="batchNumber"
           placeholder="Batch Number"
           defaultValue={this.state.batchNumber}
           onChange={this.updateBatchnumber.bind(this)}
           onKeyUp={this.updateBatchnumber.bind(this)} />
-        <input required
-          id="startDate"
-          ref="startDate"
-          type="date"
-          defaultValue={this.state.startDate}
-          onChange={this.updateStartDate.bind(this)}
-          onKeyUp={this.updateStartDate.bind(this)} />
-        <input required
-          id="endDate"
-          ref="endDate"
-          type="date"
-          defaultValue={this.state.endDate}
-          onChange={this.updateEndDate.bind(this)}
-          onKeyUp={this.updateEndDate.bind(this)} />
-        <button className="primary" onClick={this.saveClass.bind(this)}>Create class</button>
+        </div>
+        </div>
+        <div className="field">
+          <label className="label">Start date</label>
+          <div className="control">
+          <input required
+            className="input"
+            id="startDate"
+            ref="startDate"
+            type="date"
+            defaultValue={this.state.startDate}
+            onChange={this.updateStartDate.bind(this)}
+            onKeyUp={this.updateStartDate.bind(this)} />
+          </div>
+        </div>
+        <div className="field">
+          <label className="label">End date</label>
+          <div className="control">
+          <input required
+            className="input"
+            id="endDate"
+            ref="endDate"
+            type="date"
+            defaultValue={this.state.endDate}
+            onChange={this.updateEndDate.bind(this)}
+            onKeyUp={this.updateEndDate.bind(this)} />
+          </div>
+        </div>
+        <div className="control">
+          <button className="button is-primary" onClick={this.saveClass.bind(this)}>Create class</button>
+        </div>
+        </div>
       </div>
     )
   }

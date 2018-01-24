@@ -19,15 +19,26 @@ export class SignIn extends PureComponent {
 
   render() {
     return (
-      <div className="sign-in form">
+      <div className="container is-fluid">
         <form onSubmit={this.submitForm.bind(this)}>
-          <div className="input">
-            <input autoFocus ref="email" type="email" placeholder="Email address" />
+          <div className="field">
+            <label class="label">Email</label>
+            <div class="control">
+              <input class="input"
+                autoFocus ref="email"
+                type="email"
+                placeholder="jamie@gulliver.dev" />
+            </div>
           </div>
-          <div className="input">
-            <input ref="password" type="password" placeholder="Password" />
+          <div class="field">
+            <label class="label">Password</label>
+            <div class="control">
+              <input class="input" ref="password" type="password" />
+            </div>
           </div>
-          <input type="submit" value="Sign in" />
+          <div class="control">
+            <input className="button is-link" type="submit" value="Sign in" />
+          </div>
         </form>
       </div>
     )

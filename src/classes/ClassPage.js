@@ -15,11 +15,10 @@ export class ClassPage extends PureComponent {
     this.props.fetchClassByBatchNumber(this.props.match.params.batchNumber)
   }
 
-  render() {
-    const { _id, batchNumber, studentIds } = this.props
+  renderStudent(student, i, batchNumber) {
     const bgcolor = (e) => { 
       if (e === 0) { 
-        return 'red' 
+        return 'tomato' 
       } else if (e === 1) {
         return 'red'
       } else if (e === 2) {
@@ -27,14 +26,47 @@ export class ClassPage extends PureComponent {
       } 
       return 'limegreen'
     }
+
+    return (
+      <li 
+        key={i}>
+        <article className="card">
+          <div class="card-content">
+            <div class="media">
+              <div class="media-left">
+                <figure class="image is-50x50">
+                  <div className="studentColor" style={{ backgroundColor: bgcolor(student.lastEvaluation) }}></div>
+                </figure>
+              </div>
+              <div class="media-content">
+                <h2 class="is-4" style={{ color: '#363636', 'font-size': '2rem' }}>
+                  <Link to={'/classes/' + batchNumber + '/students/' + student._id}>
+                    {student.fullName}
+                  </Link>
+                </h2>
+              </div>
+            </div>
+            <div class="content">
+              <img style={{ borderRadius: '50%', marginTop: '10px', maxWidth: '200px' }} src={ student.picUrl ? student.picUrl : 'https://api.adorable.io/avatars/200/'} />
+            </div>
+          </div>
+        </article>
+      </li>
+    )
+  }
+
+  render() {
+    const { _id, batchNumber, studentIds } = this.props
+    
     if (!_id) return null
 
     return (
       <div className="classPage">
-        <h1>Batch # {batchNumber}</h1>
-        <NewStudent batchNumber={batchNumber} />
+        <h2 style={{ marginBottom: '20px' }}>Batch # {batchNumber}</h2>
+        
         <ul className="studentList">
-          {studentIds.map((student, i) => <li style={{ backgroundColor: bgcolor(student.lastEvaluation) }} className="studentItem" key={i}><Link to={'/classes/' + batchNumber + '/students/' + student._id}>{student.fullName} - {student._id} - {student.lastEvaluation}</Link></li>)}
+          <NewStudent batchNumber={batchNumber} />
+          {studentIds.map((student, i) => this.renderStudent(student, i, batchNumber))}
         </ul>
       </div>
     )

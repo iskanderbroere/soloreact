@@ -23,26 +23,36 @@ class NewStudent extends PureComponent {
 
   render() {
     return (
-      <div className="newStudent">
-        <h1>Add student</h1>
-        <input required
-          type="text"
-          ref="fullName"
-          className="fullName"
-          placeholder="Full name"
-          defaultValue={this.state.fullName}
-          onChange={this.updateFullName.bind(this)}
-          onKeyUp={this.updateFullName.bind(this)} />
-          <input required
-          type="text"
-          ref="picUrl"
-          className="picUrl"
-          placeholder="Profile picture url"
-          defaultValue={this.state.picUrl}
-          onChange={this.updatePicUrl.bind(this)}
-          onKeyUp={this.updatePicUrl.bind(this)} />
-
-        <button className="primary" onClick={this.saveStudent.bind(this)}>Create student</button>
+      <div className="card newStudent">
+        <div class="card-content">
+          <div className="field">
+            <div className="control">
+              <input required
+                className="input"
+                type="text"
+                ref="fullName"
+                placeholder="Full name"
+                defaultValue={this.state.fullName}
+                onChange={this.updateFullName.bind(this)}
+                onKeyUp={this.updateFullName.bind(this)} />
+            </div>
+          </div>
+          <div className="field">
+            <div className="control">
+            <input required
+              className="input"
+              type="text"
+              ref="picUrl"
+              placeholder="Profile picture url"
+              defaultValue={this.state.picUrl}
+              onChange={this.updatePicUrl.bind(this)}
+              onKeyUp={this.updatePicUrl.bind(this)} />
+            </div>
+          </div>
+          <div className="control">
+            <button style={{ width: '100%' }} className="button is-primary" onClick={this.saveStudent.bind(this)}>Create student</button>
+          </div>
+        </div>
       </div>
     )
   }

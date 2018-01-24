@@ -22,7 +22,7 @@ class ClassesContainer extends PureComponent {
 
   render() {
     return (   
-      <main className="ClassContainer">
+      <main className="container is-fluid ClassContainer">
         <NewClass />
         {this.props.classes.map((this.renderClass))}
       </main>

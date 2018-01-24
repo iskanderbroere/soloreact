@@ -1,17 +1,10 @@
 .newClass {
-  text-align: center;
-  padding: 20px;
-  border: 2px dashed black;
   max-width: 1fr;
 }
 .newClass button, .newClass input {
   width: 100%;
-  font-size: 24px;
   cursor: pointer;
 }
 .newClass input {
-  background: #fff;
   width: 100%;
-  font-size: 24px;
-  margin-bottom: .5rem;
 }

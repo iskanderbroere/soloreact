@@ -1,7 +1,4 @@
 .ClassItem {
-  text-align: center;
-  padding: 10px;
-  border: 2px dashed black;
   max-width: 1fr;
   height: 100%;
 }
