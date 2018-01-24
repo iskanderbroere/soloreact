@@ -1,10 +1,10 @@
-.newClass {
-  max-width: 1fr;
-}
-.newClass button, .newClass input {
-  width: 100%;
+.newClass input {
   cursor: pointer;
 }
-.newClass input {
-  width: 100%;
+.DateRangePicker {
+  margin-bottom: .75rem;
+}
+.DateRangePickerInput__withBorder {
+  border: 1px solid #dbdbdb;
+  border-radius: 3px;
 }

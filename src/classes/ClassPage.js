@@ -49,17 +49,13 @@ export class ClassPage extends PureComponent {
       <Link key={i} to={'/classes/' + batchNumber + '/students/' + student._id}>
         <li className="studentItem">
           <article className="card studentItem">
-          <header className="card-header" style={{ color: '#363636', fontSize: '2rem' }}>
-            <h2 className="card-header-title is-size-5" >
-            {student.fullName}
-            </h2>
-            <div className="studentColor" style={{ backgroundColor: bgcolor(student.lastEvaluation), margin: '15px' }}></div>
-          </header>
-            <div className="card-content">
-              <div className="content">
-                <img alt="student" style={{ borderRadius: '50%' }} src={ student.picUrl ? student.picUrl : 'https://api.adorable.io/avatars/200/'} />
-              </div>
-            </div>
+            <header className="card-header" style={{ color: '#363636', fontSize: '2rem' }}>
+              <h2 className="card-header-title is-size-5" >
+              {student.fullName}
+              </h2>
+              <div className="studentColor" style={{ backgroundColor: bgcolor(student.lastEvaluation), margin: '15px' }}></div>
+            </header>
+            <img alt="student" style={{ borderRadius: '50%' }} src={ student.picUrl ? student.picUrl : 'https://api.adorable.io/avatars/200/'} />
           </article>
         </li>
       </Link>
@@ -72,7 +68,7 @@ export class ClassPage extends PureComponent {
     const greenStudents = (studs) => ((studs.filter(s => s.lastEvaluation === 1)).length / studs.length) * 100
     const orangeStudents = (studs) => ((studs.filter(s => s.lastEvaluation === 2)).length / studs.length) * 100
     const redStudents = (studs) => ((studs.filter(s => s.lastEvaluation === 3)).length / studs.length) * 100
-    const grayStudents = (studs) => ((studs.filter(s => s.lastEvaluation === 0)).length / studs.length) * 100
+    // const grayStudents = (studs) => ((studs.filter(s => s.lastEvaluation === 0)).length / studs.length) * 100
 
     const { _id, batchNumber, startDate, endDate } = this.props
     if (!_id) return null
@@ -91,9 +87,9 @@ export class ClassPage extends PureComponent {
           </div>
         </div>
         <div className="classPage container is-fluid">
-          <header>
+          <header className="mainheader">
             <h2 style={{ marginBottom: '20px' }}>Batch # {batchNumber}</h2>
-            <h3 style={{ marginBottom: '20px' }}>{differenceInDays(endDate, startDate)}</h3>
+            <h3 style={{ marginBottom: '20px' }}>{differenceInDays(endDate, startDate)} course days</h3>
             <button className="button is-primary is-outlined is-large"
               style={{ marginBottom: '20px' }}
               onClick={this.askQuestion.bind(this)}>

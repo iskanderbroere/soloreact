@@ -25,7 +25,7 @@ class ClassItem extends PureComponent {
         <article className="card ClassItem">
           <div className="card-content">
             <h2 className="title">
-            Batch # {batchNumber}
+            Batch No. {batchNumber}
             </h2>
             <div className="content">
               <time>{ format(startDate, 'D MMMM YYYY') } - { format(endDate, 'D MMMM YYYY') }</time>

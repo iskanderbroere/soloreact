@@ -1,5 +1,8 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
+import 'react-dates/initialize'
+import 'react-dates/lib/css/_datepicker.css'
+import { DateRangePicker } from 'react-dates'
 import { createClass } from '../actions/classes'
 import './NewClass.css'
 
@@ -12,7 +15,8 @@ class NewClass extends PureComponent {
     this.state = {
       batchNumber,
       startDate,
-      endDate
+      endDate,
+      focusedInput: null
     }
   }
 
@@ -26,52 +30,39 @@ class NewClass extends PureComponent {
 
   render() {
     return (
+      <div>
       <div className="card newClass">
         <div className="card-content">
         {/* <div className="content"> */}
         {/* <h1>Create class</h1> */}
         <div className="field">
-        <div className="control">
-        <input required
-          className="input"
-          type="number"
-          ref="batchNumber"
-          placeholder="Batch Number"
-          defaultValue={this.state.batchNumber}
-          onChange={this.updateBatchnumber.bind(this)}
-          onKeyUp={this.updateBatchnumber.bind(this)} />
-        </div>
-        </div>
-        <div className="field">
-          <label className="label">Start date</label>
           <div className="control">
-          <input required
-            className="input"
-            id="startDate"
-            ref="startDate"
-            type="date"
-            defaultValue={this.state.startDate}
-            onChange={this.updateStartDate.bind(this)}
-            onKeyUp={this.updateStartDate.bind(this)} />
+            <input required
+              className="input"
+              type="number"
+              ref="batchNumber"
+              placeholder="Batch Number"
+              defaultValue={this.state.batchNumber}
+              onChange={this.updateBatchnumber.bind(this)}
+              onKeyUp={this.updateBatchnumber.bind(this)} />
           </div>
         </div>
-        <div className="field">
-          <label className="label">End date</label>
-          <div className="control">
-          <input required
-            className="input"
-            id="endDate"
-            ref="endDate"
-            type="date"
-            defaultValue={this.state.endDate}
-            onChange={this.updateEndDate.bind(this)}
-            onKeyUp={this.updateEndDate.bind(this)} />
-          </div>
-        </div>
+        <DateRangePicker
+          block
+          displayFormat="DD MMM YYYY"
+          startDate={this.state.startDate} // momentPropTypes.momentObj or null,
+          startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
+          endDate={this.state.endDate} // momentPropTypes.momentObj or null,
+          endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
+          onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })} // PropTypes.func.isRequired,
+          focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
+          onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
+        />
         <div className="control">
-          <button className="button is-primary" onClick={this.saveClass.bind(this)}>Create class</button>
+          <button style={{ width: '100%' }} className="button is-primary" onClick={this.saveClass.bind(this)}>Create class</button>
         </div>
         </div>
+      </div>
       </div>
     )
   }

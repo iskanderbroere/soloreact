@@ -36,34 +36,66 @@ export class StudentPage extends PureComponent {
   deleteStudent() { this.props.delete(this.props.match.params.id, this.props.match.params.batchNumber) }
 
   render() {
-    const { _id, fullName } = this.props
+    const bgcolor = (e) => { 
+      if (e === 0) { 
+        return '#e9ecef' 
+      } else if (e === 1) {
+        return 'red'
+      } else if (e === 2) {
+        return 'orange'
+      } 
+      return 'limegreen'
+    }
+
+    const { _id, fullName, picUrl, lastEvaluation } = this.props
 
     if (!_id) return null
 
     return (
-      <div className="studentPage">
-        <h1>{fullName}</h1>
-        <code>{_id}</code>
-        <input required
-          type="text"
-          ref="fullName"
-          className="fullName"
-          placeholder="Full name"
-          defaultValue={this.state.fullName}
-          onChange={this.updateFullName.bind(this)}
-          onKeyUp={this.updateFullName.bind(this)} />
+      <article className="studentPage card" style={{ maxWidth: '500px', marginLeft: 'auto', marginRight: 'auto' }}>
+        <header className="card-header" style={{ color: '#363636', fontSize: '2rem' }}>
+          <h2 className="card-header-title is-size-5" >
+          {fullName}
+          </h2>
+          <div className="studentColor" style={{ backgroundColor: bgcolor(lastEvaluation), margin: '15px' }}></div>
+        </header>
+        <div className="card-content">
+          <img alt="student" style={{ borderRadius: '50%' }} src={ picUrl ? picUrl : 'https://api.adorable.io/avatars/200/'} />
+          <label className="label">Update information</label>
           <input required
-          type="text"
-          ref="picUrl"
-          className="picUrl"
-          placeholder="Profile picture url"
-          defaultValue={this.state.picUrl}
-          onChange={this.updatePicUrl.bind(this)}
-          onKeyUp={this.updatePicUrl.bind(this)} />
-
-        <button className="primary" onClick={this.updateStudent.bind(this)}>Update student</button>
-        <button className="deleteButton" onClick={this.deleteStudent.bind(this)}>&times;</button>
-      </div>
+            type="text"
+            ref="fullName"
+            className="input"
+            placeholder="Full name"
+            style={{ marginBottom: '20px' }}
+            defaultValue={this.state.fullName}
+            onChange={this.updateFullName.bind(this)}
+            onKeyUp={this.updateFullName.bind(this)} />
+          <input required
+            type="text"
+            ref="picUrl"
+            className="input"
+            placeholder="Profile picture url"
+            defaultValue={this.state.picUrl}
+            onChange={this.updatePicUrl.bind(this)}
+            onKeyUp={this.updatePicUrl.bind(this)} />
+          <p className="help">https://api.adorable.io/avatars/200/</p>
+        </div>
+        <footer className="card-footer">
+          <a onClick={this.updateStudent.bind(this)} className="card-footer-item button is-success" style={{ marginRight: '.75rem' }}>
+            <span class="icon is-small">
+              <i class="fas fa-check"></i>
+            </span>
+            <span>Save</span>
+          </a>
+          <a onClick={this.deleteStudent.bind(this)} className="card-footer-item button is-danger" style={{ marginLeft: '.75rem' }}>
+            <span>Delete</span>
+            <span class="icon is-small">
+              <i class="fas fa-times"></i>
+            </span>
+          </a>
+        </footer>
+      </article>
     )
   }
 }

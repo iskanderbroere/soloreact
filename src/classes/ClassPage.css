@@ -2,7 +2,7 @@
   list-style: none;
   margin: 0;
 }
-.classPage header {
+.mainheader {
   text-align: center;
 }
 .studentList {
@@ -22,15 +22,15 @@
   margin-bottom: 0;
 }
 .studentColor {
-  min-width: 50px;
-  width: 50px;
-  height: 50px;
+  min-width: 65px;
+  width: 65px;
+  height: 65px;
   border-radius: 50%;
   margin-left: auto;
 }
 .progress {
   display: flex;
-  height: 1rem;
+  height: 2.5rem;
   overflow: hidden;
   font-size: .75rem;
   background-color: #e9ecef;
@@ -43,4 +43,10 @@
   color: #fff;
   text-align: center;
   transition: width .6s ease;
+}
+.card img {
+  padding: 1.5rem;
+}
+.card-header {
+  padding: .75rem;
 }

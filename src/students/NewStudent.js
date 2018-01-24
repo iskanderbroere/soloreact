@@ -7,11 +7,11 @@ class NewStudent extends PureComponent {
   constructor(props) {
     super()
 
-    const { fullName } = props
+    const { fullName, picUrl } = props
 
     this.state = {
       fullName,
-      picUrl: 'https://api.adorable.io/avatars/200/'
+      picUrl
     }
   }
 
@@ -19,7 +19,14 @@ class NewStudent extends PureComponent {
 
   updatePicUrl(event) { this.setState({ picUrl: this.refs.picUrl.value }) }
 
-  saveStudent() { this.props.save(this.state, this.props.batchNumber) }
+  saveStudent() { 
+    console.log(this.state)
+    this.props.save(this.state, this.props.batchNumber)
+    this.setState({
+      fullName: '',
+      picUrl: ''
+    })
+  }
 
   render() {
     return (
@@ -29,7 +36,7 @@ class NewStudent extends PureComponent {
           Add student
           </h2>
         </header>
-        <div className="card-content">
+        <form className="card-content" onSubmit={this.saveStudent.bind(this)}>
           <div className="field">
           <label className="label">Student name</label>
             <div className="control">
@@ -44,22 +51,23 @@ class NewStudent extends PureComponent {
             </div>
           </div>
           <div className="field">
-            <label className="label">Picture url</label>
+            <label className="label">Picture - url</label>
             <div className="control">
               <input required
                 className="input"
                 type="text"
                 ref="picUrl"
                 placeholder="Profile picture url"
-                defaultValue={'https://api.adorable.io/avatars/200/'}
+                defaultValue={this.state.picUrl}
                 onChange={this.updatePicUrl.bind(this)}
                 onKeyUp={this.updatePicUrl.bind(this)} />
             </div>
+            <p className="help">https://api.adorable.io/avatars/200/</p>
           </div>
           <div className="control">
-            <button style={{ width: '100%' }} className="button is-primary" onClick={this.saveStudent.bind(this)}>Create student</button>
+            <button style={{ width: '100%' }} className="button is-primary" type="submit">Create student</button>
           </div>
-        </div>
+        </form>
       </div>
     )
   }
