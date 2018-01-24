@@ -25,15 +25,16 @@ export class SignIn extends PureComponent {
             <label className="label">Email</label>
             <div className="control">
               <input className="input"
-                autoFocus ref="email"
+                ref="email"
                 type="email"
+                defaultValue={'jamie@gulliver.dev'}
                 placeholder="jamie@gulliver.dev" />
             </div>
           </div>
           <div className="field">
             <label className="label">Password</label>
             <div className="control">
-              <input className="input" ref="password" type="password" />
+              <input autoFocus className="input" ref="password" type="password" />
             </div>
           </div>
           <div className="control">

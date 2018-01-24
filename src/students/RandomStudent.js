@@ -1,48 +1,34 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { fetchStudentById, updateStudentById, deleteStudentById } from '../actions/students'
-import './StudentPage.css'
+// import './RandomStudent.css'
 
-export class StudentPage extends PureComponent {
+export class RandomStudent extends PureComponent {
   static propTypes = {
-    _id: PropTypes.string,
+    modal: PropTypes.bool,
     fullName: PropTypes.string
   }
-
-  componentWillMount() {
-    const { id } = this.props.match.params
-    this.props.fetchStudentById(id)
-  }
-
+  
   render() {
-    const { _id, fullName } = this.props
+    console.log(this.props.modal)
+    const { _id, fullName, modal } = this.props
 
-    if (!_id) return null
+    // if (!_id) return null
 
     return (
-      <div className="studentPage">
-        <h1>{fullName}</h1>
-        <code>{_id}</code>
-
+      <div className={"modal is-active" + modal ? "is-active" : ""}>
+        <div className="modal-card">
+          <header className="modal-card-head">
+            <p className="modal-card-title">{fullName}</p>
+            <button className="delete" aria-label="close"></button>
+          </header>
+          <footer className="modal-card-foot">
+            <button className="button is-success">Save changes</button>
+            <button className="button">Cancel</button>
+          </footer>
+        </div>
       </div>
     )
   }
 }
 
-const mapStateToProps = ({ students }, { match }) => {
-  const student = students.reduce((prev, next) => {
-    // this may be buggy
-    if (!next) return students[0]
-    if (next._id.toString() === match.params.id) {
-      return next
-    }
-    return prev
-  }, {})
-
-  return {
-    ...student
-  }
-}
-
-export default connect(mapStateToProps)(StudentPage)
+export default (RandomStudent)

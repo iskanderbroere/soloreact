@@ -4,15 +4,34 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import NewStudent from '../students/NewStudent'
 import { fetchClassByBatchNumber } from '../actions/classes'
+import { askQuestion } from '../actions/students'
 import './ClassPage.css'
 
 export class ClassPage extends PureComponent {
+  constructor(props) {
+    super()
+
+    const { modal } = props
+
+    this.state = {
+      modal: false
+    }
+  }
   static propTypes = {
     batchNumber: PropTypes.number,
   }
 
   componentWillMount() {
     this.props.fetchClassByBatchNumber(this.props.match.params.batchNumber)
+  }
+
+  askQuestion() {
+    this.openRandomModal()
+    this.props.askQuestion(this.props.match.params.batchNumber)
+  }
+
+  openRandomModal() {
+    this.setState({ modal: !this.state.modal })
   }
 
   renderStudent(student, i, batchNumber) {
@@ -32,7 +51,7 @@ export class ClassPage extends PureComponent {
         <li className="studentItem">
           <article className="card studentItem">
           <header className="card-header" style={{ color: '#363636', fontSize: '2rem' }}>
-            <h2 className="card-header-title is-size-5" style={{ textAlign: 'left' }} >
+            <h2 className="card-header-title is-size-5" >
             {student.fullName}
             </h2>
             <div className="studentColor" style={{ backgroundColor: bgcolor(student.lastEvaluation), margin: '15px' }}></div>
@@ -49,25 +68,43 @@ export class ClassPage extends PureComponent {
   }
 
   render() {
+    console.log(this.props)
     const { _id, batchNumber, studentIds } = this.props
     
     if (!_id) return null
 
     return (
-      <div className="classPage container is-fluid">
-        <h2 style={{ marginBottom: '20px' }}>Batch # {batchNumber}</h2>
-        
-        <ul className="studentList">
-          <NewStudent batchNumber={batchNumber} />
-          {studentIds.map((student, i) => this.renderStudent(student, i, batchNumber))}
-        </ul>
+      <div>
+        <div className={"modal " + (this.state.modal ? 'is-active' : 'hidden')}>
+          <div className="modal-background"></div>
+          <div className="modal-card">
+            <header className="modal-card-head">
+              <p className="modal-card-title">{this.props.randomstudent.fullName}</p>
+            </header>
+            <footer className="modal-card-foot">
+              <button className="button is-danger" onClick={this.openRandomModal.bind(this)}>Close</button>
+            </footer>
+          </div>
+        </div>
+        <div className="classPage container is-fluid">
+          <h2 style={{ marginBottom: '20px' }}>Batch # {batchNumber}</h2>
+          <button className="button is-primary is-outlined is-large"
+            style={{ marginBottom: '20px' }}
+            onClick={this.askQuestion.bind(this)}>
+            Ask a question!
+          </button>
+          <ul className="studentList">
+            <NewStudent batchNumber={batchNumber} />
+            {studentIds.map((student, i) => this.renderStudent(student, i, batchNumber))}
+          </ul>
+        </div>
       </div>
     )
   }
 }
 
-const mapStateToProps = ({ classes }, { match }) => {
-  const classy = classes.reduce((prev, next) => {
+const mapStateToProps = ({ classes, randomstudent }, { match }) => {
+  const reducedClasses = classes.reduce((prev, next) => {
     if (next.batchNumber.toString() === match.params.batchNumber) {
       return next
     }
@@ -75,8 +112,9 @@ const mapStateToProps = ({ classes }, { match }) => {
   }, {})
 
   return {
-    ...classy
+    ...reducedClasses,
+    randomstudent
   }
 }
 
-export default connect(mapStateToProps, { fetchClassByBatchNumber })(ClassPage)
+export default connect(mapStateToProps, { fetchClassByBatchNumber, askQuestion })(ClassPage)

@@ -7,6 +7,7 @@ export const UPDATED_STUDENT = 'UPDATED_STUDENT'
 export const UPDATED_CLASS = 'UPDATED_CLASS'
 export const FETCHED_ONE_STUDENT = 'FETCHED_ONE_STUDENT'
 export const DELETED_STUDENT = 'DELETED_STUDENT'
+export const RANDOM_STUDENT = 'RANDOM_STUDENT'
 
 const api = new ApiClient()
 
@@ -64,6 +65,23 @@ export const deleteStudentById = (id, bn) => {
         dispatch({ type: DELETED_STUDENT, payload: res.body })
       })
       .catch(err => dispatch(loadError(err)))
+
+    dispatch(loading(path, false))
+  }
+}
+
+export const askQuestion = (bn) => {
+  return dispatch => {
+    const path = 'classes/' + bn + '/students/random'
+    dispatch(loading(path, true))
+    console.log(path)
+    api.get(path)
+      .then(res => {
+        dispatch({ type: RANDOM_STUDENT, payload: res.body })
+      })
+      .catch(err => {
+        dispatch(loadError(err))
+      })
 
     dispatch(loading(path, false))
   }

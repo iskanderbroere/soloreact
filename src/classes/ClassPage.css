@@ -1,13 +1,10 @@
-.classPage {
-  text-align: center;
-}
 .classPage ul {
   list-style: none;
   margin: 0;
 }
 .studentList {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-gap: 20px;
   padding-bottom: 20px;
 }

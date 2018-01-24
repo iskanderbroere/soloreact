@@ -2,9 +2,6 @@ import { CREATED_STUDENT, FETCHED_ONE_STUDENT, UPDATED_STUDENT, DELETED_STUDENT 
 
 export default (state = [], { type, payload } = {}) => {
   switch (type) {
-    // case FETCHED_STUDENTS :
-    //   return payload.slice()
-
     case FETCHED_ONE_STUDENT :
       return [payload].concat(state)
     

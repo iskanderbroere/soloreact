@@ -31,6 +31,7 @@ class NewStudent extends PureComponent {
         </header>
         <div className="card-content">
           <div className="field">
+          <label className="label">Student name</label>
             <div className="control">
               <input required
                 className="input"
@@ -43,15 +44,16 @@ class NewStudent extends PureComponent {
             </div>
           </div>
           <div className="field">
+            <label className="label">Picture url</label>
             <div className="control">
-            <input required
-              className="input"
-              type="text"
-              ref="picUrl"
-              placeholder="Profile picture url"
-              defaultValue={this.state.picUrl}
-              onChange={this.updatePicUrl.bind(this)}
-              onKeyUp={this.updatePicUrl.bind(this)} />
+              <input required
+                className="input"
+                type="text"
+                ref="picUrl"
+                placeholder="Profile picture url"
+                defaultValue={'https://api.adorable.io/avatars/200/'}
+                onChange={this.updatePicUrl.bind(this)}
+                onKeyUp={this.updatePicUrl.bind(this)} />
             </div>
           </div>
           <div className="control">
