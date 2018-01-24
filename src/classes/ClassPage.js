@@ -29,23 +29,17 @@ export class ClassPage extends PureComponent {
 
     return (
       <Link key={i} to={'/classes/' + batchNumber + '/students/' + student._id}>
-        <li>
-          <article className="card">
+        <li className="studentItem">
+          <article className="card studentItem">
+          <header className="card-header" style={{ color: '#363636', fontSize: '2rem' }}>
+            <h2 className="card-header-title is-size-5" style={{ textAlign: 'left' }} >
+            {student.fullName}
+            </h2>
+            <div className="studentColor" style={{ backgroundColor: bgcolor(student.lastEvaluation), margin: '15px' }}></div>
+          </header>
             <div className="card-content">
-              <div className="media">
-                <div className="media-left">
-                  <figure className="image is-50x50">
-                    <div className="studentColor" style={{ backgroundColor: bgcolor(student.lastEvaluation) }}></div>
-                  </figure>
-                </div>
-                <div className="media-content">
-                  <h2 className="is-4" style={{ color: '#363636', fontSize: '2rem' }}>
-                    {student.fullName}
-                  </h2>
-                </div>
-              </div>
               <div className="content">
-                <img alt="student" style={{ borderRadius: '50%', marginTop: '10px', maxWidth: '200px' }} src={ student.picUrl ? student.picUrl : 'https://api.adorable.io/avatars/200/'} />
+                <img alt="student" style={{ borderRadius: '50%' }} src={ student.picUrl ? student.picUrl : 'https://api.adorable.io/avatars/200/'} />
               </div>
             </div>
           </article>
@@ -60,7 +54,7 @@ export class ClassPage extends PureComponent {
     if (!_id) return null
 
     return (
-      <div className="classPage">
+      <div className="classPage container is-fluid">
         <h2 style={{ marginBottom: '20px' }}>Batch # {batchNumber}</h2>
         
         <ul className="studentList">

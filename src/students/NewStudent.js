@@ -24,6 +24,11 @@ class NewStudent extends PureComponent {
   render() {
     return (
       <div className="card newStudent">
+        <header className="card-header" style={{ color: '#363636', fontSize: '2rem', minHeight: '80px' }}>
+          <h2 className="card-header-title is-size-5">
+          Add student
+          </h2>
+        </header>
         <div className="card-content">
           <div className="field">
             <div className="control">
