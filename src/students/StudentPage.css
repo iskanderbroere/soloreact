@@ -1,3 +1,4 @@
-.card-footer {
-  padding: 1.5rem;
+.studentPageContainer {
+  display: flex;
+  align-items: stretch;
 }

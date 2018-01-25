@@ -28,6 +28,10 @@ img {
   margin-bottom: 20px;
   border-bottom: 2px dashed rgb(219, 219, 219);
 }
+.container.is-fluid {
+  margin-left: 20px;
+  margin-right: 20px;
+}
 .card {
   transition: box-shadow .3s, transform .3s;
   border: 2px dashed rgb(219, 219, 219);
@@ -36,4 +40,12 @@ img {
 a .card:hover {
   box-shadow: 0 2px 5px rgb(219, 219, 219);
   transform: translateY(-5px)
+}
+.card-footer {
+  border-top: 2px dashed rgb(219, 219, 219);
+  padding: 1.5rem;
+}
+.card-header {
+  border-bottom: 2px dashed rgb(219, 219, 219);
+  box-shadow: none;
 }

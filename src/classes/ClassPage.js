@@ -46,19 +46,23 @@ export class ClassPage extends PureComponent {
     }
 
     return (
-      <Link key={i} to={'/classes/' + batchNumber + '/students/' + student._id}>
-        <li className="studentItem">
-          <article className="card studentItem">
-            <header className="card-header" style={{ color: '#363636', fontSize: '2rem' }}>
-              <h2 className="card-header-title is-size-5" >
-              {student.fullName}
-              </h2>
-              <div className="studentColor" style={{ backgroundColor: bgcolor(student.lastEvaluation), margin: '15px' }}></div>
-            </header>
-            <img alt="student" style={{ borderRadius: '50%' }} src={ student.picUrl ? student.picUrl : 'https://api.adorable.io/avatars/200/'} />
-          </article>
-        </li>
-      </Link>
+      <li className="studentItem" key={i}>
+        <article className="card studentItem">
+          <header className="card-header" style={{ color: '#363636', fontSize: '2rem' }}>
+            <h2 className="card-header-title is-size-5">
+            {student.fullName}
+            </h2>
+            <div className="studentColor" style={{ backgroundColor: bgcolor(student.lastEvaluation), margin: '10px' }}></div>
+          </header>
+          <img alt="student" style={{ borderRadius: '50%' }} src={ student.picUrl ? student.picUrl : 'https://api.adorable.io/avatars/200/'} />
+          <footer className="card-footer">
+            <Link to={'/classes/' + batchNumber + '/students/' + student._id} 
+              className="card-footer-item button">
+              More about {student.fullName}
+            </Link>
+          </footer>
+        </article>
+      </li>
     )
   }
 

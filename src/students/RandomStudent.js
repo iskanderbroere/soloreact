@@ -9,7 +9,6 @@ export class RandomStudent extends PureComponent {
   }
   
   render() {
-    console.log(this.props.modal)
     const { _id, fullName, modal } = this.props
 
     // if (!_id) return null

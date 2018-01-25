@@ -20,7 +20,6 @@ class NewStudent extends PureComponent {
   updatePicUrl(event) { this.setState({ picUrl: this.refs.picUrl.value }) }
 
   saveStudent() { 
-    console.log(this.state)
     this.props.save(this.state, this.props.batchNumber)
     this.setState({
       fullName: '',
@@ -31,7 +30,7 @@ class NewStudent extends PureComponent {
   render() {
     return (
       <div className="card newStudent">
-        <header className="card-header" style={{ color: '#363636', fontSize: '2rem', minHeight: '80px' }}>
+        <header className="card-header" style={{ color: '#363636', fontSize: '2rem', minHeight: '102px' }}>
           <h2 className="card-header-title is-size-5">
           Add student
           </h2>

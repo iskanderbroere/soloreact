@@ -74,7 +74,6 @@ export const askQuestion = (bn) => {
   return dispatch => {
     const path = 'classes/' + bn + '/students/random'
     dispatch(loading(path, true))
-    console.log(path)
     api.get(path)
       .then(res => {
         dispatch({ type: RANDOM_STUDENT, payload: res.body })
