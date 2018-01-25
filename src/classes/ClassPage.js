@@ -8,6 +8,17 @@ import { fetchClassByBatchNumber } from '../actions/classes'
 import { askQuestion } from '../actions/students'
 import './ClassPage.css'
 
+export const bgcolor = (e) => { 
+  if (e === 0) { 
+    return '#e9ecef' 
+  } else if (e === 1) {
+    return '#23d160'
+  } else if (e === 2) {
+    return '#ffdd57'
+  } 
+  return 'red'
+}
+
 export class ClassPage extends PureComponent {
   constructor(props) {
     super()
@@ -27,24 +38,14 @@ export class ClassPage extends PureComponent {
   askQuestion() {
     this.openRandomModal()
     this.props.askQuestion(this.props.match.params.batchNumber)
+    // clear randomstudent somewhere here?
   }
 
   openRandomModal() {
     this.setState({ modal: !this.state.modal })
   }
-
+  
   renderStudent(student, i, batchNumber) {
-    const bgcolor = (e) => { 
-      if (e === 0) { 
-        return '#e9ecef' 
-      } else if (e === 1) {
-        return 'red'
-      } else if (e === 2) {
-        return 'orange'
-      } 
-      return 'limegreen'
-    }
-
     return (
       <li className="studentItem" key={i}>
         <article className="card studentItem">
@@ -85,6 +86,9 @@ export class ClassPage extends PureComponent {
             <header className="modal-card-head">
               <p className="modal-card-title">{this.props.randomstudent.fullName}</p>
             </header>
+            <section className="modal-card-body">
+              <img alt="student" style={{ borderRadius: '50%' }} src={ this.props.randomstudent.picUrl ? this.props.randomstudent.picUrl : 'https://api.adorable.io/avatars/200/'} />
+            </section>
             <footer className="modal-card-foot">
               <button className="button is-danger" onClick={this.openRandomModal.bind(this)}>Close</button>
             </footer>
@@ -96,7 +100,8 @@ export class ClassPage extends PureComponent {
             <h3 style={{ marginBottom: '20px' }}>{differenceInDays(endDate, startDate)} course days</h3>
             <button className="button is-primary is-outlined is-large"
               style={{ marginBottom: '20px' }}
-              onClick={this.askQuestion.bind(this)}>
+              onClick={this.askQuestion.bind(this)}
+              disabled={studentIds.length < 1}>
               Ask a question!
             </button>
             <div className="progress" style={{ marginBottom: '20px' }}>

@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
+import moment from 'moment'
 import 'react-dates/initialize'
 import 'react-dates/lib/css/_datepicker.css'
 import { SingleDatePicker } from 'react-dates'
@@ -10,20 +11,19 @@ class NewEval extends PureComponent {
   constructor(props) {
     super()
 
-    const { color, date, remark } = props
+    const { color, remark } = props
 
     this.state = {
       color,
-      date,
+      date: moment(),
       remark,
       focusedInput: null
     }
   }
 
   updateColor(event) {
-    console.log(this.state.color)
-    this.setState({ color: this.refs.color.value })
-    console.log(this.state.color)
+    this.setState({ color: event.target.value })
+    console.log(this.state.date)
   }
 
   updateRemark(event) { this.setState({ remark: this.refs.remark.value }) }
@@ -36,23 +36,23 @@ class NewEval extends PureComponent {
     return (
       <div className="card newEval">
         <div className="card-content">
-          <div className="control">
-            <input type="radio" name="rsvp" onChange={this.updateColor.bind(this)} />
-            <input type="radio" name="rsvp" />
-            <input type="radio" name="rsvp" />
-          </div>
           <div className="field">
             <div className="control">
-              <input required
-                className="input"
-                type="number"
-                ref="color"
-                placeholder="Batch Number"
-                defaultValue={this.state.color}
-                onChange={this.updateColor.bind(this)}
-                onKeyUp={this.updateColor.bind(this)} />
+              <label className="radio">
+                <input type="radio" value="1" name="green" checked={this.state.color === '1'}  onChange={this.updateColor.bind(this)} />
+                Green
+              </label>
+              <label className="radio">
+                <input type="radio" value="2" name="orange" checked={this.state.color === '2'}  onChange={this.updateColor.bind(this)} />
+                Orange
+              </label>
+              <label className="radio">
+                <input type="radio" value="3" name="red" checked={this.state.color === '3'}  onChange={this.updateColor.bind(this)} />
+                Red
+              </label>
             </div>
           </div>
+          <label className="label">Date</label>
           <SingleDatePicker
             block
             displayFormat="DD MMM YYYY"
@@ -61,6 +61,8 @@ class NewEval extends PureComponent {
             focused={this.state.focused} // PropTypes.bool
             onFocusChange={({ focused }) => this.setState({ focused })} // PropTypes.func.isRequired
           />
+          <label className="label">Remark</label>
+          <textarea ref="remark" onChange={this.updateRemark.bind(this)} style={{ marginBottom: '.75rem' }} className="textarea"></textarea>
           <div className="control">
             <button style={{ width: '100%' }} className="button is-primary" onClick={this.saveEval.bind(this)}>Create evaluation</button>
           </div>

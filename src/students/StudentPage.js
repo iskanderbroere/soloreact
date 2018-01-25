@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { bgcolor } from '../classes/ClassPage'
 import EvalsContainer from '../containers/EvalsContainer'
 import { fetchStudentById, updateStudentById, deleteStudentById } from '../actions/students'
 import './StudentPage.css'
@@ -37,17 +38,6 @@ export class StudentPage extends PureComponent {
   deleteStudent() { this.props.delete(this.props.match.params.id, this.props.match.params.batchNumber) }
 
   render() {
-    const bgcolor = (e) => { 
-      if (e === 0) { 
-        return '#e9ecef' 
-      } else if (e === 1) {
-        return 'red'
-      } else if (e === 2) {
-        return 'orange'
-      } 
-      return 'limegreen'
-    }
-
     const { _id, fullName, picUrl, lastEvaluation, evaluationIds } = this.props
 
     if (!_id) return null

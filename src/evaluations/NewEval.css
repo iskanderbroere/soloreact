@@ -1,3 +1,17 @@
 .SingleDatePickerInput {
   margin-bottom: .75rem;
 }
+.radio + .radio {
+  margin-left: 0;
+  margin-top: .25rem;
+}
+.radio {
+  display: block;
+}
+.radio input {
+  margin-right: .25rem;
+}
+.newEval {
+  grid-column: col 1 / span 2;
+  grid-row: row 1;
+}
