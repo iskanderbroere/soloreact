@@ -1,13 +1,6 @@
 .SingleDatePickerInput {
   margin-bottom: .75rem;
 }
-.radio + .radio {
-  margin-left: 0;
-  margin-top: .25rem;
-}
-.radio {
-  display: block;
-}
 .radio input {
   margin-right: .25rem;
 }

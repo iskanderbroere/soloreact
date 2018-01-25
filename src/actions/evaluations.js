@@ -3,6 +3,7 @@ import { push } from 'react-router-redux'
 import { loading, loadError } from './loading'
 
 export const CREATED_EVAL = 'CREATED_EVAL'
+export const UPDATED_STUDENT_EVALS = 'UPDATED_STUDENT_EVALS'
 
 const api = new ApiClient()
 
@@ -13,6 +14,7 @@ export const createEval = (newEval, studentId) => {
     api.post(path, newEval)
       .then(res => {
         console.log(res)
+        dispatch({ type: UPDATED_STUDENT_EVALS, payload: { ...res, studentId } })
         dispatch({ type: CREATED_EVAL, payload: res.body })
       })
       .catch(err => dispatch(loadError(err)))

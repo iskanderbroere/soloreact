@@ -11,7 +11,7 @@ class NewEval extends PureComponent {
   constructor(props) {
     super()
 
-    const { color, remark } = props
+    const { remark, color } = props
 
     this.state = {
       color,

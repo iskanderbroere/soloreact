@@ -4,7 +4,7 @@ import { loading, loadError } from './loading'
 
 export const CREATED_STUDENT = 'CREATED_STUDENT'
 export const UPDATED_STUDENT = 'UPDATED_STUDENT'
-export const UPDATED_CLASS = 'UPDATED_CLASS'
+export const UPDATED_CLASS_STUDENTS = 'UPDATED_CLASS_STUDENTS'
 export const FETCHED_ONE_STUDENT = 'FETCHED_ONE_STUDENT'
 export const DELETED_STUDENT = 'DELETED_STUDENT'
 export const RANDOM_STUDENT = 'RANDOM_STUDENT'
@@ -17,7 +17,7 @@ export const createStudent = (newStudent, batchNumber) => {
     dispatch(loading(path, true))
     api.post(path, newStudent)
       .then(res => {
-        dispatch({ type: UPDATED_CLASS, payload: { ...res, batchNumber } })
+        dispatch({ type: UPDATED_CLASS_STUDENTS, payload: { ...res, batchNumber } })
         dispatch({ type: CREATED_STUDENT, payload: res.body })
       })
       .catch(err => dispatch(loadError(err)))
