@@ -4,7 +4,7 @@ import moment from 'moment'
 import 'react-dates/initialize'
 import 'react-dates/lib/css/_datepicker.css'
 import { SingleDatePicker } from 'react-dates'
-import { createEval } from '../actions/evaluations'
+import { createEval, updateEvalById } from '../actions/evaluations'
 import './NewEval.css'
 
 class NewEval extends PureComponent {
@@ -21,16 +21,30 @@ class NewEval extends PureComponent {
     }
   }
 
-  updateColor(event) {
-    this.setState({ color: event.target.value })
-    console.log(this.state.date)
-  }
+  updateColor(event) { this.setState({ color: event.target.value }) }
 
   updateRemark(event) { this.setState({ remark: this.refs.remark.value }) }
 
-  // updateEndDate(event) { this.setState({ endDate: this.refs.endDate.value }) }
+  evalAlreadyExists(evals, date) {
+    const existance = evals.filter(evaluation => {
+      return evaluation.date.slice(0, 10) === date._d.toJSON().slice(0, 10)
+    })
+    if (existance.length > 0) {
+      return true
+    }
+    return false
+  }
+
+  evalToUpdate(evals, date) {
+    //hackety hack
+    return evals.filter(evaluation => { return evaluation.date.slice(0, 10) === date._d.toJSON().slice(0, 10) })[0]._id
+  }
 
   saveEval() { this.props.save(this.state, this.props.id) }
+
+  updateEvalById() {
+    this.props.update(this.state, this.evalToUpdate(this.props.evals, this.state.date), this.props.id) 
+  }
 
   render() {
     return (
@@ -64,7 +78,10 @@ class NewEval extends PureComponent {
           <label className="label">Remark</label>
           <textarea ref="remark" onChange={this.updateRemark.bind(this)} style={{ marginBottom: '.75rem' }} className="textarea"></textarea>
           <div className="control">
-            <button style={{ width: '100%' }} className="button is-primary" onClick={this.saveEval.bind(this)}>Create evaluation</button>
+            { this.evalAlreadyExists(this.props.evals, this.state.date) ? 
+              <button style={{ width: '100%' }} className="button is-warning" onClick={this.updateEvalById.bind(this)}>Update evaluation</button> :
+              <button style={{ width: '100%' }} className="button is-primary" onClick={this.saveEval.bind(this)}>Create evaluation</button>
+            }
           </div>
         </div>
       </div>
@@ -72,6 +89,4 @@ class NewEval extends PureComponent {
   }
 }
 
-const mapDispatchToProps = { save: createEval }
-
-export default connect(null, mapDispatchToProps)(NewEval)
+export default connect(null, { save: createEval, update: updateEvalById })(NewEval)

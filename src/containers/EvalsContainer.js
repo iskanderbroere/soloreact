@@ -18,7 +18,7 @@ class EvalsContainer extends PureComponent {
   render() {
     return (   
       <main className="EvalContainer">
-        <NewEvaluation id={this.props.id}/>
+        <NewEvaluation id={this.props.id} evals={this.props.evals}/>
         {this.props.evals.map((this.renderEval))}
       </main>
     )
