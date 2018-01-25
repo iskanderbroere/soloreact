@@ -19,12 +19,13 @@ class NewStudent extends PureComponent {
 
   updatePicUrl(event) { this.setState({ picUrl: this.refs.picUrl.value }) }
 
-  saveStudent() { 
+  saveStudent(event) {
+    event.preventDefault() 
     this.props.save(this.state, this.props.batchNumber)
-    this.setState({
-      fullName: '',
-      picUrl: ''
-    })
+    // this.setState({
+    //   fullName: '',
+    //   picUrl: ''
+    // })
   }
 
   render() {
