@@ -11,17 +11,17 @@ class NewEval extends PureComponent {
   constructor(props) {
     super()
 
-    const { remark, color } = props
+    const { remark } = props
 
     this.state = {
-      color,
+      color: 1,
       date: moment(),
       remark,
       focusedInput: null
     }
   }
 
-  updateColor(event) { this.setState({ color: event.target.value }) }
+  updateColor(event) { this.setState({ color: Number(event.target.value) }) }
 
   updateRemark(event) { this.setState({ remark: this.refs.remark.value }) }
 
@@ -53,15 +53,15 @@ class NewEval extends PureComponent {
           <div className="field">
             <div className="control">
               <label className="radio">
-                <input type="radio" value="1" name="green" checked={this.state.color === '1'}  onChange={this.updateColor.bind(this)} />
+                <input type="radio" value="1" name="green" checked={this.state.color === 1}  onChange={this.updateColor.bind(this)} />
                 Green
               </label>
               <label className="radio">
-                <input type="radio" value="2" name="orange" checked={this.state.color === '2'}  onChange={this.updateColor.bind(this)} />
+                <input type="radio" value="2" name="orange" checked={this.state.color === 2}  onChange={this.updateColor.bind(this)} />
                 Orange
               </label>
               <label className="radio">
-                <input type="radio" value="3" name="red" checked={this.state.color === '3'}  onChange={this.updateColor.bind(this)} />
+                <input type="radio" value="3" name="red" checked={this.state.color === 3}  onChange={this.updateColor.bind(this)} />
                 Red
               </label>
             </div>
@@ -75,6 +75,9 @@ class NewEval extends PureComponent {
             focused={this.state.focused} // PropTypes.bool
             onFocusChange={({ focused }) => this.setState({ focused })} // PropTypes.func.isRequired
           />
+          { this.evalAlreadyExists(this.props.evals, this.state.date) && 
+            <p style={{ marginBottom: '.25rem' }} className="help is-danger">This date has already been evaluated!</p>
+          }
           <label className="label">Remark</label>
           <textarea ref="remark" onChange={this.updateRemark.bind(this)} style={{ marginBottom: '.75rem' }} className="textarea"></textarea>
           <div className="control">
