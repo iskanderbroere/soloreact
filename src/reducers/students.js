@@ -23,7 +23,7 @@ export default (state = [], { type, payload } = {}) => {
         if (c._id.toString() === payload.studentId.toString()) {
           const newClass = {
             ...c,
-            evaluationIds: c.evaluationIds.concat([payload.body])
+            evaluationIds: [payload.body].concat(c.evaluationIds)
           }
           return newClass
         }

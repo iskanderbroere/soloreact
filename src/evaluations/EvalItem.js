@@ -16,10 +16,6 @@ class EvalItem extends PureComponent {
     ...evalShape.isRequired
   }
 
-  changeColor(event) {
-    console.log(event.target)
-  }
-
   render() {
     const { color, date, remark } = this.props
 
@@ -30,7 +26,7 @@ class EvalItem extends PureComponent {
         <p className="card-header-title is-size-6" >
           <time>{ format(date, 'D MMMM YYYY') }</time>
         </p>
-        <div className="studentColor" onClick={this.changeColor.bind(this)} style={{ backgroundColor: bgcolor(color), margin: '15px' }}></div>
+        <div className="studentColor" style={{ backgroundColor: bgcolor(color), margin: '15px' }}></div>
       </header>
       <div className="card-content">
         <div className="content">{remark}</div>
