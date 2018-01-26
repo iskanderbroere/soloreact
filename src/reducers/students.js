@@ -19,15 +19,16 @@ export default (state = [], { type, payload } = {}) => {
       return newState
 
     case ADDED_STUDENT_EVAL :
-      const naState = state.map(c => {
-        if (c._id.toString() === payload.studentId.toString()) {
-          const newClass = {
-            ...c,
-            evaluationIds: [payload.body].concat(c.evaluationIds)
+      const naState = state.map(s => {
+        if (s._id.toString() === payload.studentId.toString()) {
+          const newStudent = {
+            ...s,
+            evaluationIds: [payload.body].concat(s.evaluationIds),
+            lastEvaluation: payload.body.color
           }
-          return newClass
+          return newStudent
         }
-        return c
+        return s
       })
       return naState
 
@@ -43,7 +44,8 @@ export default (state = [], { type, payload } = {}) => {
           })
           const newClass = {
             ...s,
-            evaluationIds: newEvalIds
+            evaluationIds: newEvalIds,
+            lastEvaluation: payload.nEval.color
           }
           return newClass
         }
