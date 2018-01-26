@@ -1,5 +1,4 @@
 import ApiClient from '../api/client'
-// import { push } from 'react-router-redux'
 import { loading, loadError } from './loading'
 
 export const UPDATED_STUDENT_EVALS = 'UPDATED_STUDENT_EVALS'
